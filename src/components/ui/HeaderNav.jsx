@@ -7,7 +7,7 @@ export default function HeaderNav() {
         <Link to="/" className={styles.logo}>KINGSLEY HEMANS - TEMPORARY PORTFOLIO</Link>
       <h2 className={styles.intro}>
         Designer and Creative Developer creating thoughtful <br></br> interactions and
-        experiences for humans.
+        experiences for humans
       </h2>
       <nav>
         <ul className={styles.navLinks}>
