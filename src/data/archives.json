@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "title": "Motion Study",
+    "description": "Experimental animation tests.",
+    "image": "/src/assets/archivesImages/arch1.png"
+  },
+  {
+    "id": 2,
+    "title": "Poster Exploration",
+    "description": "Typography experiments.",
+    "image": "/src/assets/archivesImages/arch2.png"
+  },
+  {
+    "id": 3,
+    "title": "Interface Concept",
+    "description": "UI explorations.",
+    "image": "/src/assets/archivesImages/arch3.png"
+  },
+  {
+    "id": 4,
+    "title": "Interface Concept",
+    "description": "UI explorations.",
+    "image": "/src/assets/archivesImages/arch4.png"
+  },
+    {
+        "id": 5,
+        "title": "Interface Concept",
+        "description": "UI explorations.",
+        "image": "/src/assets/archivesImages/arch5.jpg"
+    },
+    {
+        "id": 6,
+        "title": "Interface Concept",
+        "description": "UI explorations.",
+        "image": "/src/assets/archivesImages/arch6.jpg"
+    }
+  
+]

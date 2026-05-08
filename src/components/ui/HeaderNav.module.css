@@ -1,0 +1,42 @@
+a{
+    text-decoration: none;
+}
+.headerNav{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+    padding-top: 1rem;
+}
+.logo{
+    color: var(--secondary-color);
+    font-family: "Switzer", sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+}
+.navLinks{
+    display: flex;
+    gap: 0.5rem;
+    margin: 0;
+}
+.navLinks li{
+    list-style: none;
+}
+.navLinks li a{
+    color: var(--secondary-color);
+    font-family: "Switzer", sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+.cta{
+    color: var(--secondary-color);
+    font-family: "Switzer", sans-serif;
+    text-decoration: underline;
+}
+.intro{
+    color: var(--secondary-color);
+    font-family: "Switzer";
+    font-weight: 400;
+    margin: 0;
+}

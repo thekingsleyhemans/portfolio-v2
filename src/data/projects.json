@@ -1,0 +1,84 @@
+[
+  {
+    "id": "limear",
+    "slug": "limear",
+    "title": "LimeAR Platform",
+
+    "heroImage": "src/assets/testcardimg.jpg",
+
+    "services": [
+      "Product Design",
+      "UI/UX Design",
+      "Frontend Development"
+    ],
+
+    "description": "LimeAR is an augmented reality platform designed to help brands create immersive, sales-driven experiences. The project involved designing a seamless interface and developing a performant frontend system.",
+
+    "gallery": [
+      "/images/limear/1.jpg",
+      "/images/limear/2.jpg",
+      "/images/limear/3.jpg"
+    ]
+  },
+
+  {
+    "id": "creative-beans",
+    "slug": "creative-beans",
+    "title": "Creative Beans",
+
+    "heroImage": "src/assets/testcardimg.jpg",
+
+    "services": [
+      "UI/UX Design",
+      "Interaction Design",
+      "Web Development"
+    ],
+
+    "description": "Creative Beans is a platform focused on enabling creators to showcase and monetize their work. The focus was on clarity, interaction design, and building a scalable frontend system.",
+
+    "gallery": [
+      "/images/creative-beans/1.jpg",
+      "/images/creative-beans/2.jpg"
+    ]
+  },
+  {
+    "id": "my-portfolio",
+    "slug": "my-portfolio",
+    "title": "My Portfolio",
+
+    "heroImage": "src/assets/testcardimg.jpg",
+
+    "services": [
+      "UI/UX Design",
+      "Interaction Design",
+      "Web Development"
+    ],
+
+    "description": "My Portfolio is a platform focused on enabling creators to showcase and monetize their work. The focus was on clarity, interaction design, and building a scalable frontend system.",
+
+    "gallery": [
+      "/images/my-portfolio/1.jpg",
+      "/images/my-portfolio/2.jpg"
+    ]
+  },
+  {
+    "id": "my-portfolio",
+    "slug": "my-portfolio",
+    "title": "My Portfolio",
+
+    "heroImage": "src/assets/testcardimg.jpg",
+
+    "services": [
+      "UI/UX Design",
+      "Interaction Design",
+      "Web Development"
+    ],
+
+    "description": "My Portfolio is a platform focused on enabling creators to showcase and monetize their work. The focus was on clarity, interaction design, and building a scalable frontend system.",
+
+    "gallery": [
+      "/images/my-portfolio/1.jpg",
+      "/images/my-portfolio/2.jpg"
+    ]
+  }
+]
