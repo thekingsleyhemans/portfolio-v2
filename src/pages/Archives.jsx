@@ -19,6 +19,7 @@ const CELL_HEIGHT = ITEM_HEIGHT + GAP_Y;
 export default function Archives() {
   const containerRef = useRef(null);
   const detailOverlayRef = useRef(null);
+  const detailContentRef = useRef(null);
 
   const [items, setItems] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -90,10 +91,10 @@ export default function Archives() {
 
     itemsRef.current = newItems;
 
-// defer state commit safely (prevents ESLint + rerender loop warning)
-requestAnimationFrame(() => {
-  setItems([...newItems]);
-});
+    // defer state commit safely (prevents ESLint + rerender loop warning)
+    requestAnimationFrame(() => {
+      setItems([...newItems]);
+    });
   }, []);
 
   // ---------------- OPEN ----------------
@@ -116,91 +117,109 @@ requestAnimationFrame(() => {
     setItems(updated);
 
     const el = domMapRef.current.get(idx);
-    const data = updated[idx];
+    if (!el) return;
 
-    const centerX = window.innerWidth / 2 - ITEM_WIDTH * 1.5 / 2;
-    const centerY = window.innerHeight / 2 - ITEM_HEIGHT * 1.5 / 2;
+    // Store original position
+    s.originalX = gsap.getProperty(el, "x");
+    s.originalY = gsap.getProperty(el, "y");
+
+    const rect = el.getBoundingClientRect();
+    const scaleValue = 1.5;
+
+    // final dimensions after scaling
+    const finalWidth = rect.width * scaleValue;
+    const finalHeight = rect.height * scaleValue;
+
+    // distance needed from current viewport position
+    const targetX = (window.innerWidth - finalWidth) / 2 - rect.left;
+    const targetY = (window.innerHeight - finalHeight) / 2 - rect.top;
+
+    const detailsY = window.innerHeight * 0.8;
 
     gsap.killTweensOf(el);
 
     gsap.to(el, {
-      x: centerX,
-      y: centerY,
-      scale: 1.5,
+      x: `+=${targetX}`,
+      y: `+=${targetY}`,
+      scale: scaleValue,
+      transformOrigin: "center center",
       duration: 0.7,
       ease: "power3.out",
     });
-
-    setSelectedProject(archiveData[data.index]);
+    setSelectedProject(archiveData[updated[idx].index]);
 
     document.body.style.overflow = "hidden";
 
+    // Position the details below the card
+    gsap.set(detailContentRef.current, { top: detailsY });
     gsap.to(detailOverlayRef.current, {
       opacity: 1,
       duration: 0.4,
+      ease: "power3.out",
       pointerEvents: "auto",
     });
   }, []);
 
   // ---------------- CLOSE (FIXED + GUARANTEED RESET) ----------------
   const closeDetailView = useCallback(() => {
-  const s = stateRef.current;
-  if (!s.isDetailView) return;
+    const s = stateRef.current;
+    if (!s.isDetailView) return;
 
-  const idx = s.activeIndex;
-  const el = domMapRef.current.get(idx);
+    const idx = s.activeIndex;
+    const el = domMapRef.current.get(idx);
 
-  s.isDetailView = false;
-  s.activeIndex = null;
+    s.isDetailView = false;
+    s.activeIndex = null;
 
-  // stop RAF interference during transition
-  if (el) {
-    gsap.killTweensOf(el);
+    // stop RAF interference during transition
+    if (el) {
+      gsap.killTweensOf(el);
 
-    gsap.to(el, {
-      x: 0,
-      y: 0,
-      scale: 1,
-      duration: 0.7,
-      ease: "power3.inOut",
-      onComplete: () => {
-        // only reset AFTER animation completes
-        const reset = itemsRef.current.map((it) => ({
-          ...it,
-          selected: false,
-          blurred: false,
-          locked: false,
-          lockScale: 1,
-        }));
+      gsap.to(el, {
+        x: s.originalX,
+        y: s.originalY,
+        scale: 1,
+        duration: 0.7,
+        ease: "power3.inOut",
+        onComplete: () => {
+          // only reset AFTER animation completes
+          const reset = itemsRef.current.map((it) => ({
+            ...it,
+            selected: false,
+            blurred: false,
+            locked: false,
+            lockScale: 1,
+          }));
 
-        itemsRef.current = reset;
-        setItems(reset);
-      },
+          itemsRef.current = reset;
+          setItems(reset);
+        },
+      });
+    } else {
+      // fallback reset if no element found
+      const reset = itemsRef.current.map((it) => ({
+        ...it,
+        selected: false,
+        blurred: false,
+        locked: false,
+        lockScale: 1,
+      }));
+
+      itemsRef.current = reset;
+      setItems(reset);
+    }
+
+    setSelectedProject(null);
+
+    document.body.style.overflow = "";
+
+    gsap.to(detailOverlayRef.current, {
+      opacity: 0,
+      duration: 0.3,
+      ease: "power3.in",
+      pointerEvents: "none",
     });
-  } else {
-    // fallback reset if no element found
-    const reset = itemsRef.current.map((it) => ({
-      ...it,
-      selected: false,
-      blurred: false,
-      locked: false,
-      lockScale: 1,
-    }));
-
-    itemsRef.current = reset;
-    setItems(reset);
-  }
-
-  setSelectedProject(null);
-
-  document.body.style.overflow = "";
-
-  gsap.to(detailOverlayRef.current, {
-    opacity: 0,
-    duration: 0.3,
-    pointerEvents: "none",
-  });
-}, []);
+  }, []);
 
   // ---------------- INPUT ----------------
   const startDrag = (x, y) => {
@@ -227,6 +246,7 @@ requestAnimationFrame(() => {
 
   const stopDrag = () => {
     stateRef.current.isDragging = false;
+    stateRef.current.wasDragged = false;
   };
 
   // ---------------- EVENTS ----------------
@@ -240,7 +260,9 @@ requestAnimationFrame(() => {
     };
 
     window.addEventListener("wheel", wheel, { passive: true });
-    window.addEventListener("mousedown", (e) => startDrag(e.clientX, e.clientY));
+    window.addEventListener("mousedown", (e) =>
+      startDrag(e.clientX, e.clientY),
+    );
     window.addEventListener("mousemove", (e) => moveDrag(e.clientX, e.clientY));
     window.addEventListener("mouseup", stopDrag);
 
@@ -327,9 +349,12 @@ requestAnimationFrame(() => {
         ref={detailOverlayRef}
         className={styles.detailOverlay}
         onClick={closeDetailView}
-        style={{ opacity: 0, pointerEvents: "none" }}
       >
-        <div className={styles.detailContent} onClick={(e) => e.stopPropagation()}>
+        <div
+          ref={detailContentRef}
+          className={styles.detailContent}
+          onClick={(e) => e.stopPropagation()}
+        >
           {selectedProject && (
             <>
               <h2>{selectedProject.title}</h2>

@@ -1,6 +1,5 @@
 import ProjectGrid from "../components/sections/ProjectGrid";
 import Hero from "../components/sections/Hero";
-import HeaderNav from "../components/ui/HeaderNav";
 import projects from "../data/projects.json";
 
 

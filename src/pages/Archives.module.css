@@ -66,7 +66,7 @@
 
 /* Selected item state */
 .galleryItem.selected {
-  z-index: 10;
+  z-index: 30;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   pointer-events: none;
 }
@@ -79,23 +79,20 @@
 /* Detail Overlay */
 .detailOverlay {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, calc(50% + 260px));
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   z-index: 20;
   opacity: 0;
   pointer-events: none;
-  text-align: center;
-  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.detailOverlay.active {
-  opacity: 1;
-  transform: translate(-50%, calc(50% + 240px));
-  pointer-events: auto;
 }
 
 .detailContent {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
   padding: 20px;
 }
 
