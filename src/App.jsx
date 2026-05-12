@@ -12,7 +12,7 @@ export default function App() {
     <>
       <Loader />
 
-      {location.pathname !== "/archives" && <HeaderNav />}
+      {!location.pathname.startsWith("/Archives") && <HeaderNav />}
 
       <Routes>
         <Route path="/" element={<Home />} />
