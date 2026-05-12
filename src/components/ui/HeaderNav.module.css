@@ -37,6 +37,7 @@ a{
 .intro{
     color: var(--secondary-color);
     font-family: "Switzer";
+    font-size: 1.5rem;
     font-weight: 400;
     margin: 0;
 }

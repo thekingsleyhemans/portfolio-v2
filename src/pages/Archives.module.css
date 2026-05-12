@@ -24,10 +24,13 @@
   width: 100vw;
   height: 100vh;
   cursor: grab;
+  user-select: none;
+
 }
 
 .galleryContainer:active {
   cursor: grabbing;
+ 
 }
 
 /* Gallery Items */
