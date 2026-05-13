@@ -131,8 +131,8 @@ export default function Archives() {
     const finalHeight = rect.height * scaleValue;
 
     // distance needed from current viewport position
-    const targetX = (window.innerWidth - finalWidth) / 2 - rect.left;
-    const targetY = (window.innerHeight - finalHeight) / 2 - rect.top;
+    const targetX = (window.innerWidth - finalWidth) / 1.8 - rect.left;
+    const targetY = (window.innerHeight - finalHeight) / 1.5 - rect.top;
 
     const detailsY = window.innerHeight * 0.8;
 
@@ -322,6 +322,9 @@ export default function Archives() {
   return (
     <>
       <div className={styles.grainOverlay} />
+      <div className={styles.backBtn} onClick={() => window.location.href = "/"}>
+        Back to Home
+      </div>
 
       <div ref={containerRef} className={styles.galleryContainer}>
         {items.map((item, i) => (
