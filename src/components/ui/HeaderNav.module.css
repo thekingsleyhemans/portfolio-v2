@@ -3,11 +3,13 @@ a{
     user-select: none;
 }
 .headerNav{
-    width: 100%;
+    width: 98%;
+    justify-self: center;
     display: flex;
     justify-content: space-between;
     align-items: top;
     padding-top: 1rem;
+  
 }
 .logo{
     color: var(--secondary-color);

@@ -10,26 +10,15 @@ export default function ProjectGrid({ projects }) {
     const track = trackRef.current;
     const wrapper = wrapperRef.current;
 
-    wrapper.addEventListener("mouseenter", () => {
-      speed = 0.3;
-    });
-
-    wrapper.addEventListener("mouseleave", () => {
-      speed = 1;
-    });
-
     let x = 0;
-    let speed = 1; // adjust this for flow
+    let speed = 1;
 
-    // measure half width (original set only)
     const getWidth = () => track.scrollWidth / 2;
-
     let width = getWidth();
 
     const animate = () => {
       x -= speed;
 
-      // reset when we've moved one full set
       if (Math.abs(x) >= width) {
         x = 0;
       }
@@ -42,11 +31,18 @@ export default function ProjectGrid({ projects }) {
       width = getWidth();
     };
 
+    const onEnter = () => (speed = 0.3);
+    const onLeave = () => (speed = 1);
+
+    wrapper.addEventListener("mouseenter", onEnter);
+    wrapper.addEventListener("mouseleave", onLeave);
     window.addEventListener("resize", handleResize);
 
     requestAnimationFrame(animate);
 
     return () => {
+      wrapper.removeEventListener("mouseenter", onEnter);
+      wrapper.removeEventListener("mouseleave", onLeave);
       window.removeEventListener("resize", handleResize);
     };
   }, []);
