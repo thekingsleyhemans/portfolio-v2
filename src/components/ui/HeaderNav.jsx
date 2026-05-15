@@ -11,7 +11,6 @@ export default function HeaderNav() {
       </h2>
       <nav>
         <ul className={styles.navLinks}>
-          <li><Link to="Works">Works,</Link></li>
           <li><Link to="Info">Info,</Link></li>
           <li><Link to="Archives">Archives</Link></li>
         </ul>

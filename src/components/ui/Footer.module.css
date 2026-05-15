@@ -1,0 +1,27 @@
+footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 98%;
+    padding: 1rem;
+    justify-self:center;
+}
+footer p{
+    color: #e23636;;
+    font-family: "Switzer", sans-serif;
+    font-size: 1rem;
+}
+footer ul{
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+}
+
+footer ul li a{
+    color: #e23636;;
+    font-family: "Switzer", sans-serif;
+    font-size: 0.9rem;
+    text-decoration: none;
+}

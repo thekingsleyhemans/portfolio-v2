@@ -1,5 +1,6 @@
 a{
     text-decoration: none;
+    user-select: none;
 }
 .headerNav{
     width: 100%;
@@ -40,4 +41,5 @@ a{
     font-size: 1.5rem;
     font-weight: 400;
     margin: 0;
+    user-select: none;
 }

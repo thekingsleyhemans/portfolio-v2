@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: center;
   flex: 0 0 auto; /* prevents shrinking and growing */
+  user-select: none;
 }
 
 .project__card > img {
