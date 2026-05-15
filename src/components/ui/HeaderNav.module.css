@@ -28,7 +28,15 @@ a{
     font-family: "Switzer", sans-serif;
     font-weight: 500;
     font-size: 1rem;
-    transition: color 0.3s ease;
+    transition: filter 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+.navLinks:hover li a {
+    filter: blur(0.5px);
+    opacity: 0.8;
+}
+.navLinks li a:hover {
+    filter: blur(0);
+    opacity: 1;
 }
 .cta{
     color: var(--secondary-color);
