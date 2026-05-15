@@ -1,16 +1,15 @@
 .marquee {
   width: 100%;
   overflow: hidden;
-  position: relative;
-  padding: 2rem 0;
 }
 
 .track {
   display: flex;
-  gap: 2rem;
+  gap: 24px;
   width: max-content;
-  flex-wrap: nowrap;
-  align-items: flex-start;
   will-change: transform;
-  transform: translate3d(0, 0, 0);
+}
+
+.slide {
+  flex: 0 0 auto;
 }

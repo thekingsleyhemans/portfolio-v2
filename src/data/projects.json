@@ -62,9 +62,49 @@
     ]
   },
   {
-    "id": "my-portfolio",
-    "slug": "my-portfolio",
-    "title": "My Portfolio",
+    "id": "atelier-website",
+    "slug": "atelier-website",
+    "title": "Atelier Website",
+
+    "heroImage": "src/assets/testcardimg.jpg",
+
+    "services": [
+      "UI/UX Design",
+      "Interaction Design",
+      "Web Development"
+    ],
+
+    "description": "My Portfolio is a platform focused on enabling creators to showcase and monetize their work. The focus was on clarity, interaction design, and building a scalable frontend system.",
+
+    "gallery": [
+      "/images/my-portfolio/1.jpg",
+      "/images/my-portfolio/2.jpg"
+    ]
+  },
+  {
+    "id": "palm-oil-collective",
+    "slug": "palm-oil-collective",
+    "title": "Palm Oil Collective",
+
+    "heroImage": "src/assets/testcardimg.jpg",
+
+    "services": [
+      "UI/UX Design",
+      "Interaction Design",
+      "Web Development"
+    ],
+
+    "description": "My Portfolio is a platform focused on enabling creators to showcase and monetize their work. The focus was on clarity, interaction design, and building a scalable frontend system.",
+
+    "gallery": [
+      "/images/my-portfolio/1.jpg",
+      "/images/my-portfolio/2.jpg"
+    ]
+  },
+  {
+    "id": "the-junk-mag",
+    "slug": "the-junk-mag",
+    "title": "The Junk Mag",
 
     "heroImage": "src/assets/testcardimg.jpg",
 
